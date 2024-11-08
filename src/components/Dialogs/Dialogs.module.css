@@ -1,0 +1,23 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    color: #443c41;
+}
+
+.dialogs .dialog {
+    padding: 10px;
+}
+
+.dialogsItems a:active,
+.dialogsItems a:focus {
+    color: #8a6284;
+}
+
+.massages {
+    padding: 10px;
+}
+
+
+.massages  .massage {
+color: white;
+}
