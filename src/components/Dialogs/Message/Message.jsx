@@ -1,7 +1,7 @@
 import s from "../Dialogs.module.css";
 
 const Message = (props) => {
-    return <div className={s.dialogs}>{props.massage}</div>
+    return <div className={props.className}>{props.message}</div>
 }
 
 export default Message;

@@ -1,18 +1,20 @@
 import s from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-
-const tmpPosts = [
-  {id: 1, massage: "Hi, how are you", likesCount: 10},
-  {id: 2, massage: "It's my first post", likesCount: 5},
-];
+import {useSelector} from "react-redux";
 
 const Profile = (props) => {
+  const state = useSelector((state) => state);
+  const posts = useSelector(state => state.profile.posts);
+  const newPostText = useSelector(state => state.profile.newPostText);
+  // const { posts, newPostText } = useSelector(state => state.profile);
 
   return (
     <div>
       <ProfileInfo />
-      <MyPosts posts={tmpPosts} />
+      <MyPosts posts={posts}
+               newPostText={newPostText}
+      />
     </div>)
 }
 
