@@ -1,30 +1,22 @@
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import { useDispatch, useSelector } from "react-redux";
-import { addMessage, updateNewMessage } from "../../redux/dialogsSlice";
 
 
 const Dialogs = (props) => {
 
-  // const { dialogs, messages } = props;
-
-  const { dialogs, messages, newMessageText } = useSelector(state => state.dialogs);
-  const dispatch = useDispatch();
-
-
   const onAddNewMessage = () => {
-    dispatch(addMessage());
+    props.onAddNewMessage();
   }
 
   const onMessageChange = (e) => {
     const text = e.target.value;
-    dispatch(updateNewMessage(text));
+    props.onMessageChange(text);
   }
 
-  let dialogsElements = dialogs
+  let dialogsElements = props.dialogs
     .map(d => <DialogItem name={d.name} id={d.id} /> );
-  let messagesElements = messages
+  let messagesElements = props.messages
     .map((m, index) =>
       <Message className={index % 2 ? s.rightMessage : s.leftMessage} message={m.message} />);
 
@@ -38,7 +30,7 @@ const Dialogs = (props) => {
         <div>
           <textarea placeholder='Enter your message here'
                     onChange={onMessageChange}
-                    value={newMessageText}
+                    value={props.newMessageText}
           />
           <button onClick={onAddNewMessage}>Send</button>
         </div>

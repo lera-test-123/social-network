@@ -10,15 +10,10 @@ const navLinks = [
   {link: "/Settings", text:"Settings"}
 ];
 
-const sidebar = [
-  {id: 1, name: "Mark"},
-  {id: 2, name: "Anna"},
-  {id: 3, name: "Larysa"}
-]
 
 const Navbar = (props) => {
 
-  // const sidebar = useSelector(state => state.sidebar);
+  const sidebar = useSelector(state => state.sidebar);
 
   const friendsElements = sidebar
     .map((f) => {

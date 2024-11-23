@@ -1,29 +1,18 @@
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
-import { useDispatch } from "react-redux";
-import { addPost, updateNewPost } from "../../../redux/profileSlice";
-
-
 
 
 const MyPosts = (props) => {
-
-  const dispatch = useDispatch();
-
   let postsElements = props.posts
     .map(m => <Post message={m.message} likesCount={m.likesCount}/>)
 
   const onAddPost = () => {
-    // props.dispatch(addPostActionCreator());
-    dispatch(addPost());
+    props.addPost();
   }
 
   const onPostChange = (e) => {
     const text = e.target.value;
-    // let action = updateNewPostTextActionCreator(text);
-    // props.dispatch(action);
-    dispatch(updateNewPost(text));
+    props.updateNewPost(text);
   }
 
   return (
