@@ -7,7 +7,8 @@ const navLinks = [
   {link: "/Dialogs", text:"Dialogs"},
   {link: "/News", text:"News"},
   {link: "/Music", text:"Music"},
-  {link: "/Settings", text:"Settings"}
+  {link: "/Settings", text:"Settings"},
+  {link: "/Users", text:"Users"},
 ];
 
 
@@ -18,26 +19,26 @@ const Navbar = (props) => {
   const friendsElements = sidebar
     .map((f) => {
       return (
-          <div className={s.friendItem}>
-            <div className={s.avatar}>
+          <div className={s.friendItem} key={f.id}>
+            <div className={s.avatar} >
               <img src="https://i.pinimg.com/736x/91/2c/e1/912ce19bfeadb1e9e2b7cee8f0a4f1bc.jpg"
-                   alt={`${f.name} avatar`}/>
+                   alt={`${f.name} avatar`} />
             </div>
             <span>
               {f.name}
             </span>
           </div>
       )
-    });
+     });
 
   const navElements = navLinks
-    .map((e) => <div className={s.item}><NavLink to={e.link}>{e.text}</NavLink></div>);
+    .map((e, index) => <div className={s.item} key={index}><NavLink to={e.link}>{e.text}</NavLink></div>);
 
   return (
     <nav className={s.nav}>
         {navElements}
         <div className={s.item}>
-          <NavLink to="/Friends">Friends</NavLink>
+          <NavLink to='/Friends'>Friends</NavLink>
           <div className={s.friendsBlock}> {friendsElements}</div>
         </div>
       </nav>)

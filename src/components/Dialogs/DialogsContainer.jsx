@@ -8,7 +8,6 @@ const DialogsContainer = (props) => {
   const { dialogs, messages, newMessageText } = useSelector(state => state.dialogs);
   const dispatch = useDispatch();
 
-
   const onAddNewMessage = () => {
     dispatch(addMessage());
   }

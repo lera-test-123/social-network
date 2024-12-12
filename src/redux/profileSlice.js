@@ -9,6 +9,7 @@ export const profileSlice = createSlice({
     {id: 2, message: "It's my first post", likesCount: 5},
   ],
     newPostText: '',
+    profile: null,
   },
   reducers: {
     addPost: (state) => {
@@ -16,12 +17,15 @@ export const profileSlice = createSlice({
       state.posts.push(newPost);
       state.newPostText = '';
     },
-      updateNewPost: (state, action) => {
+    updateNewPost: (state, action) => {
       state.newPostText = action.payload;
     },
+    setUserProfile: (state, action) => {
+      state.profile = action.payload;
+    }
   },
 })
 
-export const { addPost, updateNewPost } = profileSlice.actions;
+export const { addPost, updateNewPost, setUserProfile } = profileSlice.actions;
 
 export default profileSlice.reducer;

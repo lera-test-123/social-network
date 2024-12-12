@@ -4,7 +4,6 @@ import Message from "./Message/Message";
 
 
 const Dialogs = (props) => {
-
   const onAddNewMessage = () => {
     props.onAddNewMessage();
   }
@@ -15,10 +14,9 @@ const Dialogs = (props) => {
   }
 
   let dialogsElements = props.dialogs
-    .map(d => <DialogItem name={d.name} id={d.id} /> );
+    .map(d => <DialogItem name={d.name} id={d.id} key={d.id} /> );
   let messagesElements = props.messages
-    .map((m, index) =>
-      <Message className={index % 2 ? s.rightMessage : s.leftMessage} message={m.message} />);
+    .map((m, index) => <Message className={index % 2 ? s.rightMessage : s.leftMessage} message={m.message} key={m.id} />);
 
   return (
     <div className={s.dialogs}>

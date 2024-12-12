@@ -11,7 +11,6 @@ import store from "./redux/redux-store";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const rerenderEntireTree = (state) => {
     root.render(
       <React.StrictMode>
         <Provider store={store}>
@@ -21,9 +20,8 @@ const rerenderEntireTree = (state) => {
         </Provider>
       </React.StrictMode>
     );
-}
 
-rerenderEntireTree(store.getState());
+
 
 
 

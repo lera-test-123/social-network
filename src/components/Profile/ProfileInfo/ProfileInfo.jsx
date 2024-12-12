@@ -1,6 +1,11 @@
 import s from "./ProfileInfo.module.css";
+import Preloader from "../../common/Preloader/Preloader";
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+  if (!props.profile) {
+    return <Preloader />
+  }
+
     return (
         <div>
             <div>
@@ -8,6 +13,7 @@ const ProfileInfo = () => {
                      alt=""/>
             </div>
             <div className={s.descriptionBlock}>
+              <span>{props.profile.fullName}</span>
                 ava + description
             </div>
         </div>
