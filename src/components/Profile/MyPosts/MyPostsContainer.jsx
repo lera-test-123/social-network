@@ -1,6 +1,6 @@
 // import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../redux/profile-reducer";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost, updateNewPost } from "../../../redux/profileSlice";
+import { addPost, updateNewPost } from "../../../redux/profile/profileSlice";
 import MyPosts from "./MyPosts";
 
 

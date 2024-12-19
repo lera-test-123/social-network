@@ -5,7 +5,7 @@ const initialState = {
   email: null,
   login: null,
   isAuth: false,
-  isFetching: false,
+  isFetching: true,
 }
 
 export const authSlice = createSlice({
@@ -13,7 +13,7 @@ export const authSlice = createSlice({
   initialState,
   reducers:{
     setAuthUserData: (state, action) => {
-        return { ...state, ...action.payload, isAuth: true };
+        return { ...state, ...action.payload, isAuth: true, isFetching: false };
     }
   }
 })

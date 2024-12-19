@@ -1,67 +1,36 @@
 import { useEffect } from 'react';
-import axios from 'axios';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching } from '../../redux/usersSlice';
+import { toggleIsFollowingProgress } from '../../redux/users/usersSlice';
 import Users from './Users';
-import Preloader from "../common/Preloader/Preloader";
+import usersThunk from '../../redux/users/usersThunk';
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 
 let UsersContainer = (props) => {
-
-  const { users, pageSize, totalUsersCount, currentPage, isFetching } = useSelector((state) => state.users);
+  const { users, pageSize, totalUsersCount, currentPage, isFetching, followingInProgress } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    toggleIsPreloader(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`,
-      {
-        withCredentials: true
-      })
-      .then((res) => {
-        getSetUsers(res.data.items);
-        getTotalUsersCount(res.data.totalCount);
-        toggleIsPreloader(false);
-      })
+    dispatch(usersThunk.getUsers({ currentPage, pageSize }));
   },[])
 
   const onPageChange = (pageNumber) => {
-    toggleIsPreloader(true);
-    getCurrentPage(pageNumber);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${pageSize}`,
-      {
-        withCredentials: true
-      })
-      .then((res) => {
-        toggleIsPreloader(false);
-        getSetUsers(res.data.items);
-        getTotalUsersCount(res.data.totalCount);
-      })
+    dispatch(usersThunk.getUsers( { currentPage: pageNumber, pageSize }));
   }
 
   const followUser = (userId) => {
-    dispatch(follow(userId));
+    dispatch(usersThunk.unfollowUser(userId));
   }
 
   const unfollowUser = (userId) => {
-    dispatch(unfollow(userId));
+    dispatch(usersThunk.followUser(userId));
   }
 
-  const getTotalUsersCount = (users) => {
-    dispatch(setTotalUsersCount(users));
+  const toggleFollowingProgress = (followingInProgress) => {
+    dispatch(toggleIsFollowingProgress(followingInProgress));
   }
 
-  const toggleIsPreloader = (isFetching) => {
-    dispatch(toggleIsFetching(isFetching));
-  }
-
-  const getSetUsers = (users) => {
-    dispatch(setUsers(users));
-  }
-
-  const getCurrentPage = (page) => {
-    dispatch(setCurrentPage(page));
-  }
 
 
   return (
@@ -74,11 +43,13 @@ let UsersContainer = (props) => {
         onPageChange,
         followUser,
         unfollowUser,
-        isFetching
+        isFetching,
+        toggleFollowingProgress,
+        followingInProgress,
       }}
       />
     </>
   );
 }
 
-export default UsersContainer;
+export default withAuthRedirect(UsersContainer);

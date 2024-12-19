@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 
 import Profile from "./Profile";
-import { setUserProfile } from "../../redux/profileSlice";
-
+import { getProfileUser } from "../../redux/profile/profileThunk";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 
 const ProfileContainer = () => {
@@ -15,15 +14,17 @@ const ProfileContainer = () => {
 
 
   useEffect(() => {
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId ?? 2}`)
-      .then((res) => {
-        dispatch(setUserProfile(res.data));
-      })
-  }, []);
+    if(!userId) {
+      userId = 31966;
+    }
+    dispatch(getProfileUser(userId))
+  },[userId]);
 
   return (
-    <Profile profile={profile} />
+    <Profile {...{profile}} />
     )
 }
 
-export default ProfileContainer;
+// const AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+
+export default withAuthRedirect(ProfileContainer);

@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+
 
 const initialState = {
   users: [],
@@ -6,10 +7,11 @@ const initialState = {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: false,
+  followingInProgress: [],
 }
 
 export const usersSlice = createSlice({
-  name: "users",
+  name: 'users',
   initialState,
   reducers:{
     follow: (state, action) => {
@@ -48,10 +50,21 @@ export const usersSlice = createSlice({
     },
     toggleIsFetching: (state, action) => {
       state.isFetching = action.payload;
+    },
+    toggleIsFollowingProgress: (state, action) => {
+      let currentFollowingProgress = [...state.followingInProgress];
+
+      if (action.payload.followingInProgress) { // loading started
+        currentFollowingProgress.push(action.payload.userId);
+      } else { // loading finished
+        currentFollowingProgress = currentFollowingProgress.filter((userIdFromList) => userIdFromList !== action.payload.userId);
+      }
+
+      state.followingInProgress = currentFollowingProgress;
     }
   }
 })
 
-export const { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching} = usersSlice.actions;
+export const { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleIsFollowingProgress} = usersSlice.actions;
 
 export default usersSlice.reducer;

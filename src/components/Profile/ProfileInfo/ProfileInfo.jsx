@@ -1,5 +1,6 @@
-import s from "./ProfileInfo.module.css";
-import Preloader from "../../common/Preloader/Preloader";
+import styles from "./ProfileInfo.module.scss";
+import Preloader from '../../common/Preloader/Preloader';
+import userPhoto from '../../../assets/images/userPhoto.jpg'
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -7,14 +8,14 @@ const ProfileInfo = (props) => {
   }
 
     return (
-        <div>
+        <div className={styles.container}>
             <div>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR__zJOFi3ef7eGRIlVWo2DKdUXKrCq8dBwtQ&s"
-                     alt=""/>
+                {/*<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR__zJOFi3ef7eGRIlVWo2DKdUXKrCq8dBwtQ&s"*/}
+                {/*     alt=""/>*/}
+              <img src={props.profile.photos.large ?? userPhoto} alt=""/>
             </div>
-            <div className={s.descriptionBlock}>
+            <div className={styles.descriptionBlock}>
               <span>{props.profile.fullName}</span>
-                ava + description
             </div>
         </div>
     )

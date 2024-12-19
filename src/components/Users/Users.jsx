@@ -1,13 +1,13 @@
-import { NavLink } from "react-router-dom";
-import axios from "axios";
+import { NavLink } from 'react-router-dom';
 
 import styles from './Users.module.css';
-import userPhoto from "../../assets/images/userPhoto.jpg";
-import Pagination from "../Pagination/Pagination";
-import Preloader from "../common/Preloader/Preloader";
+import userPhoto from '../../assets/images/userPhoto.jpg';
+import Pagination from '../Pagination/Pagination';
+import Preloader from '../common/Preloader/Preloader';
 
 
 let Users = (props) => {
+
   return (
   <div>
       <div>
@@ -31,35 +31,14 @@ let Users = (props) => {
           <div>
             {
               user.followed
-                ? <button onClick={ () => {
-
-                  axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-                    withCredentials: true,
-                    headers: {
-                      'API=KEY': 'f2c45c51-10dc-48f1-aef7-f93775c76652'
-                    }
-                  })
-                    .then((res) => {
-                      if (!res.data.resultCode === 0) {
-                        props.unfollowUser(user.id);
-                      }
-                    })
-
+                ? <button disabled={props.followingInProgress.some( (id) => id === user.id)}
+                          onClick={ () => {
+                  props.followUser(user.id);
 
                 }}>Unfollow</button>
-                : <button onClick={ () => {
-
-                  axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{}, {
-                    withCredentials: true,
-                    headers: {
-                      'API=KEY': 'f2c45c51-10dc-48f1-aef7-f93775c76652'
-                    }
-                  })
-                    .then((res) => {
-                      if (res.data.resultCode === 0) {
-                        props.followUser(user.id);
-                      }
-                    })
+                : <button disabled={props.followingInProgress.some( (id) => id === user.id)}
+                          onClick={ () => {
+                  props.unfollowUser(user.id)
 
                 }}>Follow</button>
             }
@@ -71,8 +50,8 @@ let Users = (props) => {
             <div>{user.status}</div>
           </span>
           <span>
-            <div>{"user.location.country"}</div>
-            <div>{"user.location.city"}</div>
+            <div>{'user.location.country'}</div>
+            <div>{'user.location.city'}</div>
           </span>
         </span>
         </div>)

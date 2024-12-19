@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
+
 import { addMessage, updateNewMessage } from "../../redux/dialogsSlice";
 import Dialogs from "./Dialogs";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 
 const DialogsContainer = (props) => {
-
   const { dialogs, messages, newMessageText } = useSelector(state => state.dialogs);
   const dispatch = useDispatch();
 
@@ -17,12 +18,14 @@ const DialogsContainer = (props) => {
   }
 
   return (
-    <Dialogs dialogs={dialogs}
-             messages={messages}
-             newMessageText={newMessageText}
-             onMessageChange={onMessageChange}
-             onAddNewMessage={onAddNewMessage}/>
+    <Dialogs {...{dialogs,
+             messages,
+             newMessageText,
+             onMessageChange,
+             onAddNewMessage,
+             }}
+    />
   );
 }
 
-export default DialogsContainer;
+export default withAuthRedirect(DialogsContainer);

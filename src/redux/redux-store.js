@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import profileReducer from "./profileSlice";
+import profileReducer from "./profile/profileSlice";
 import dialogsReducer  from "./dialogsSlice";
 import sidebarReducer from "./sidebarSlice";
-import usersReducer from "./usersSlice";
-import authReducer from "./authSlice";
+import usersReducer from "./users/usersSlice";
+import authReducer from "./auth/authSlice";
 
 
 
