@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleIsFollowingProgress } from '../../redux/users/usersSlice';
 import Users from './Users';
-import usersThunk from '../../redux/users/usersThunk';
+import usersThunk from '../../redux/users/usersThunks';
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 

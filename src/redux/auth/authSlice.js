@@ -4,8 +4,10 @@ const initialState = {
   userId: null,
   email: null,
   login: null,
+  password: null,
   isAuth: false,
   isFetching: true,
+  isRememberMe: false,
 }
 
 export const authSlice = createSlice({

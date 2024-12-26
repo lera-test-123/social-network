@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import UserApi from '../../api/userApi';
+import userApi from '../../api/userApi';
 import {
   follow, setCurrentPage,
   setTotalUsersCount,
@@ -15,7 +15,7 @@ const getUsers = createAsyncThunk(
   async ({ currentPage, pageSize }, {dispatch}) => {
     try {
       dispatch(toggleIsFetching(true));
-      const data = await UserApi.getUsers(currentPage, pageSize);
+      const data = await userApi.getUsers(currentPage, pageSize);
       dispatch(setUsers(data.items));
       dispatch(setCurrentPage(currentPage));
       dispatch(setTotalUsersCount(data.totalCount));
@@ -30,7 +30,7 @@ const followUser = createAsyncThunk(
   async (userId , {dispatch}) => {
     try {
       dispatch(toggleIsFollowingProgress( { followingInProgress: true, userId }));
-      const data = await UserApi.followUser(userId);
+      const data = await userApi.followUser(userId);
       if (data.resultCode === 0) {
        dispatch(follow(userId));
       }
@@ -47,7 +47,7 @@ const unfollowUser = createAsyncThunk(
   async (userId, { dispatch }) => {
     try {
       dispatch(toggleIsFollowingProgress( { followingInProgress: true, userId }));
-      const data = await UserApi.unfollowUser(userId);
+      const data = await userApi.unfollowUser(userId);
       if (data.resultCode === 0) {
         dispatch(unfollow(userId));
       }

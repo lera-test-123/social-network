@@ -19,20 +19,14 @@ export const dialogsSlice = createSlice({
       {id: 5, message: "Hi"},
       {id: 6, message: "Hi"}
     ],
-    newMessageText: '',
   },
   reducers: {
-    addMessage: (state) => {
-      const newMessage = {id: 7, message: state.newMessageText};
-      state.messages.push(newMessage);
-      state.newMessageText = '';
-    },
-    updateNewMessage: (state, action) => {
-      state.newMessageText = action.payload;
+    addMessage: (state, action) => {
+      state.messages =  [...state.messages, { id: state.messages.length + 1, message: action.payload }];
     },
   },
 })
 
-export const { addMessage, updateNewMessage } = dialogsSlice.actions;
+export const { addMessage } = dialogsSlice.actions;
 
 export default dialogsSlice.reducer;

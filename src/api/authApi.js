@@ -1,10 +1,11 @@
-import axios from "axios";
+import instance from './axiosInstance';
 
-const instance = axios.create({
-  baseURL: 'https://social-network.samuraijs.com/api/1.0/auth/',
-  withCredentials: true
-})
-
-  export const getMyAuthData = async () => {
-    return (await instance.get('me'))?.data;
+const getMyAuthData = async () => {
+    return (await instance.get('auth/me'))?.data;
   }
+
+  const getSignupData = async () => {
+    return (await instance.get('auth/login'))?.data;
+  }
+
+  export default { getMyAuthData, getSignupData }
