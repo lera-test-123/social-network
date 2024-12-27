@@ -2,6 +2,8 @@ import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
 import styles from "./LoginForm.module.scss";
+import authThunk from "../../../redux/auth/authThunks";
+import {useDispatch} from "react-redux";
 
 
 const SignupSchema = Yup.object().shape({
@@ -15,6 +17,7 @@ const SignupSchema = Yup.object().shape({
 })
 
 const LoginForm = (props) => {
+
   return (
     <div className={styles.formBlock}>
       <Formik
@@ -24,7 +27,7 @@ const LoginForm = (props) => {
           rememberMe: false,
         }}
         validationSchema={SignupSchema}
-        onSubmit={data => console.log(data)} >
+        onSubmit={props.onSubmit} >
         {({ errors, touched}) => (
           <Form>
             <div>
@@ -36,7 +39,7 @@ const LoginForm = (props) => {
             </div>
             <div>
               <label htmlFor="password">Password</label>
-              <Field id="password" name='password' type='text' placeholder='Password'/>
+              <Field id="password" name='password' type='password' placeholder='Password'/>
               {errors.password && touched.password ? (
                 <div className={styles.error}>{errors.password}</div>
               ) : null}

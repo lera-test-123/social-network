@@ -4,8 +4,12 @@ const getMyAuthData = async () => {
     return (await instance.get('auth/me'))?.data;
   }
 
-  const getSignupData = async () => {
-    return (await instance.get('auth/login'))?.data;
+  const login = async (email, password, rememberMe = false) => {
+    return (await instance.post('auth/login', { email, password, rememberMe }))?.data;
   }
 
-  export default { getMyAuthData, getSignupData }
+const logout = async () => {
+  return (await instance.delete('auth/login'))?.data;
+}
+
+  export default { getMyAuthData, login, logout }

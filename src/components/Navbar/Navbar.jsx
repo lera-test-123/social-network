@@ -3,12 +3,12 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const navLinks = [
-  {link: "/Profile", text:"Profile"},
-  {link: "/Dialogs", text:"Dialogs"},
-  {link: "/News", text:"News"},
-  {link: "/Music", text:"Music"},
-  {link: "/Settings", text:"Settings"},
-  {link: "/Users", text:"Users"},
+  {link: "/profile", text:"Profile"},
+  {link: "/dialogs", text:"Dialogs"},
+  {link: "/news", text:"News"},
+  {link: "/music", text:"Music"},
+  {link: "/settings", text:"Settings"},
+  {link: "/users", text:"Users"},
 ];
 
 
@@ -38,7 +38,7 @@ const Navbar = (props) => {
     <nav className={s.nav}>
         {navElements}
         <div className={s.item}>
-          <NavLink to='/Friends'>Friends</NavLink>
+          <NavLink to='/friends'>Friends</NavLink>
           <div className={s.friendsBlock}> {friendsElements}</div>
         </div>
       </nav>)

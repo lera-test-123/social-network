@@ -29,6 +29,7 @@ const Dialogs = (props) => {
 
 const AddMessageForm = (props) => {
   const onSubmit = (data, { resetForm }) => {
+    if (data.newMessageText.length < 1) return null
     props.onAddNewMessage(data.newMessageText);
     resetForm();
   };

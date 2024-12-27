@@ -22,6 +22,7 @@ const MyPosts = (props) => {
 
 const AddPostForm = (props) => {
   const onSubmit = (data, { resetForm }) => {
+    if (data.newPostText.length < 1) return null
     props.addPost(data.newPostText);
     resetForm();
   }

@@ -15,7 +15,7 @@ export const authSlice = createSlice({
   initialState,
   reducers:{
     setAuthUserData: (state, action) => {
-        return { ...state, ...action.payload, isAuth: true, isFetching: false };
+        return { ...state, ...action.payload, isFetching: false };
     }
   }
 })
