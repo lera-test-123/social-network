@@ -48,7 +48,7 @@ const LoginForm = (props) => {
               <Field id="rememberMe" name='rememberMe' type='checkbox'/>
               <label htmlFor="rememberMe">Remember me</label>
             </div>
-            <button type="submit">Sign Up</button>
+            <button type="submit">Login</button>
           </Form>
         )}
       </Formik>

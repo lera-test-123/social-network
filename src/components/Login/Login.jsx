@@ -7,20 +7,23 @@ import authThunk from "../../redux/auth/authThunks";
 
 
 const Login = (props) => {
-
-  const { isAuth } = useSelector(state => state.auth);
+  const { isAuth, errorMessages } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const onSubmit = (values) => {
-    console.log(values);
     dispatch(authThunk.login( { email: values.email, password: values.password, rememberMe: values.rememberMe }));
   }
 
   if (isAuth) {
     return <Navigate to='/profile' />
   }
-
   return <div className={styles.loginForm}>
     <h1>Login</h1>
+    { errorMessages?.length
+      ? (
+        <div style={{ color: 'red' }}>{errorMessages[0]}</div>
+      )
+    : null
+    }
     <LoginForm onSubmit={onSubmit}/>
   </div>
 }

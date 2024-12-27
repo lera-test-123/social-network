@@ -40,7 +40,7 @@ const followUser = createAsyncThunk(
       dispatch(toggleIsFollowingProgress( { followingInProgress: false, userId }));
     }
   }
-)
+);
 
 const unfollowUser = createAsyncThunk(
   'users/unfollowUser',

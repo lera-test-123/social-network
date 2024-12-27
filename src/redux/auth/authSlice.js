@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import authThunks from "./authThunks";
 
 const initialState = {
   userId: null,
@@ -8,18 +9,30 @@ const initialState = {
   isAuth: false,
   isFetching: true,
   isRememberMe: false,
+  errorMessages: [],
 }
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers:{
+  reducers: {
+    setIsFetching(state, action){
+      state.isFetching = action.payload;
+    },
     setAuthUserData: (state, action) => {
-        return { ...state, ...action.payload, isFetching: false };
+        return { ...state, ...action.payload };
     }
-  }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(authThunks.login.fulfilled, (state, action) => {
+      state.errorMessages = [];
+    })
+    builder.addCase(authThunks.login.rejected, (state, action) => {
+      state.errorMessages = action.payload.messages;
+    })
+  },
 })
 
-export const { setAuthUserData, } = authSlice.actions;
+export const { setAuthUserData, setIsFetching, } = authSlice.actions;
 
 export default authSlice.reducer;
