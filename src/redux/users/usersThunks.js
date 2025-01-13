@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import userApi from '../../api/userApi';
 import {
-  follow, setCurrentPage,
+  followUnfollow,
+  setCurrentPage,
   setTotalUsersCount,
   setUsers,
   toggleIsFetching,
   toggleIsFollowingProgress,
-  unfollow
 } from './usersSlice';
 
 
@@ -25,14 +25,15 @@ const getUsers = createAsyncThunk(
   }
 );
 
-const followUser = createAsyncThunk(
-  'users/followUser',
-  async (userId , {dispatch}) => {
+
+const followUnfollowUser = createAsyncThunk(
+  'users/followUnfollowUser',
+  async ({userId, followType} , {dispatch}) => {
     try {
       dispatch(toggleIsFollowingProgress( { followingInProgress: true, userId }));
-      const data = await userApi.followUser(userId);
+      const data = await userApi[followType ? 'followUser' : 'unfollowUser'](userId);
       if (data.resultCode === 0) {
-       dispatch(follow(userId));
+       dispatch(followUnfollow({ userId, followType }));
       }
     } catch (e) {
       console.error(e);
@@ -42,21 +43,5 @@ const followUser = createAsyncThunk(
   }
 );
 
-const unfollowUser = createAsyncThunk(
-  'users/unfollowUser',
-  async (userId, { dispatch }) => {
-    try {
-      dispatch(toggleIsFollowingProgress( { followingInProgress: true, userId }));
-      const data = await userApi.unfollowUser(userId);
-      if (data.resultCode === 0) {
-        dispatch(unfollow(userId));
-      }
-    } catch (e) {
-      console.error(e);
-    } finally {
-      dispatch(toggleIsFollowingProgress( { followingInProgress: false, userId }));
-    }
-  }
-)
 
-export default { getUsers, followUser, unfollowUser }
+export default { getUsers, followUnfollowUser }

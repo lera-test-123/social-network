@@ -1,12 +1,10 @@
-import { NavLink } from 'react-router-dom';
-
-import styles from './Users.module.css';
-import userPhoto from '../../assets/images/userPhoto.jpg';
+import styles from './Users.module.scss';
 import Pagination from '../Pagination/Pagination';
 import Preloader from '../common/Preloader/Preloader';
+import User from "./User";
 
 
-let Users = (props) => {
+const Users = (props) => {
 
   return (
   <div>
@@ -21,40 +19,10 @@ let Users = (props) => {
       </div>
     { props.isFetching ? <Preloader /> : null }
       {
-        props.users.map( (user) => <div key={user.id}>
-        <span>
-          <div>
-            <NavLink to={`/profile/${user.id}`}>
-              <img src={ user.photos.small != null ? user.photos.small : userPhoto } alt="avatar" className={styles.userPhoto}/>
-            </NavLink>
-          </div>
-          <div>
-            {
-              user.followed
-                ? <button disabled={props.followingInProgress.some( (id) => id === user.id)}
-                          onClick={ () => {
-                  props.followUser(user.id);
-
-                }}>Unfollow</button>
-                : <button disabled={props.followingInProgress.some( (id) => id === user.id)}
-                          onClick={ () => {
-                  props.unfollowUser(user.id)
-
-                }}>Follow</button>
-            }
-          </div>
-        </span>
-          <span>
-          <span>
-            <div>{user.name}</div>
-            <div>{user.status}</div>
-          </span>
-          <span>
-            <div>{'user.location.country'}</div>
-            <div>{'user.location.city'}</div>
-          </span>
-        </span>
-        </div>)
+        props.users.map( (user) => <User key={user.id} followingInProgress={props.followingInProgress}
+                                         unfollowUser={props.unfollowUser}
+                                         followUser={props.followUser}
+                                         user={user} />)
       }
     </div>
   )

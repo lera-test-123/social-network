@@ -1,4 +1,4 @@
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 import LoginForm from "./LoginForm/LoginForm";

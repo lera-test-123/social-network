@@ -1,58 +1,44 @@
 import { NavLink } from 'react-router-dom';
 
-import styles from './Users.module.css';
+import styles from './Users.module.scss';
 import userPhoto from '../../assets/images/userPhoto.jpg';
-import Pagination from '../Pagination/Pagination';
-import Preloader from '../common/Preloader/Preloader';
 
 
-let Users = (props) => {
+const User = (props) => {
 
   return (
-  <div>
-      <div>
-        {
-          <Pagination totalUsersCount={props.totalUsersCount}
-                      pageSize={props.pageSize}
-                      currentPage={props.currentPage}
-                      onPageChange={props.onPageChange}
-          />
-        }
-      </div>
-    { props.isFetching ? <Preloader /> : null }
-      {
-        props.users.map( (user) => <div key={user.id}>
+    <div>
         <span>
           <div>
-            <NavLink to={`/profile/${user.id}`}>
-              <img src={ user.photos.small != null ? user.photos.small : userPhoto } alt="avatar" className={styles.userPhoto}/>
+            <NavLink to={`/profile/${props.user.id}`}>
+              <img src={props.user.photos.small != null ? props.user.photos.small : userPhoto} alt="avatar"
+                   className={styles.userPhoto}/>
             </NavLink>
           </div>
           <div>
             {
               <button
-                disabled={props.followingInProgress.some( (id) => id === user.id)}
-                onClick={() => { user.followed ? props.unfollowUser(user.id) : props.followUser(user.id)}}>
-                {user.followed ? 'Unfollow' : 'Follow'}
+                disabled={props.followingInProgress.some((id) => id === props.user.id)}
+                onClick={() => {
+                  props.user.followed ? props.unfollowUser(props.user.id) : props.followUser(props.user.id)
+                }}>
+                {props.user.followed ? 'Unfollow' : 'Follow'}
               </button>
             }
           </div>
         </span>
-          <span>
-          <span>
-            <div>{user.name}</div>
-            <div>{user.status}</div>
+      <span>
+            <span>
+              <div>{props.user.name}</div>
+              <div>{props.user.status}</div>
+            </span>
+            <span>
+              <div>{'props.user.location.country'}</div>
+              <div>{'props.user.location.city'}</div>
+            </span>
           </span>
-          <span>
-            <div>{'user.location.country'}</div>
-            <div>{'user.location.city'}</div>
-          </span>
-        </span>
-        </div>)
-      }
     </div>
   )
 }
 
-
-export default Users;
+export default User;

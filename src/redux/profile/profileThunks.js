@@ -26,7 +26,7 @@ const updateStatus = createAsyncThunk(
   'ptofile/updateStatus',
   async (status, { dispatch }) => {
     const data = await ProfileApi.updateStatus(status);
-    if (data.resultCode === 0) {
+    if (data.data.resultCode === 0) {
       dispatch(setStatus(status));
     }
   }

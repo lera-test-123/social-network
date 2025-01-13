@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import authApi from "../../api/authApi";
-import {setAuthUserData, setIsFetching} from "./authSlice";
+import { setAuthUserData, setIsFetching } from "./authSlice";
 
 
 const getCurrentUser = createAsyncThunk(
@@ -9,7 +9,6 @@ const getCurrentUser = createAsyncThunk(
   async (_, { dispatch }) => {
     try {
       dispatch(setIsFetching(true));
-
       const data = await authApi.getMyAuthData();
       if (data.resultCode === 0) {
         let { id: userId, email, login } = data.data;

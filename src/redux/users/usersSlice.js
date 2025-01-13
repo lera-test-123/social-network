@@ -14,30 +14,19 @@ export const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers:{
-    follow: (state, action) => {
+    followUnfollow: (state, action) => {
       // const userIndexToUpdate = state.users.findIndex(user => user.id === action.payload.id);
       // if (userIndexToUpdate !== -1) {
       //   state.users[userIndexToUpdate].followed = true;
       // }
 
       state.users = state.users.map((user) => {
-        if (user.id === action.payload) {
-          user.followed = true;
+        if (user.id === action.payload.userId) {
+          user.followed = action.payload.followType;
           return user;
         }
-
         return user;
       });
-    },
-    unfollow: (state, action) => {
-      state.users = state.users.map((user) => {
-        if (user.id === action.payload) {
-          user.followed = false;
-          return user;
-        }
-
-        return user;
-      })
     },
     setUsers: (state, action) => {
        state.users = action.payload;
@@ -65,6 +54,6 @@ export const usersSlice = createSlice({
   }
 })
 
-export const { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleIsFollowingProgress} = usersSlice.actions;
+export const { followUnfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleIsFollowingProgress} = usersSlice.actions;
 
 export default usersSlice.reducer;

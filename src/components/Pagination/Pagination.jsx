@@ -2,7 +2,8 @@ import { useMemo } from "react";
 
 import styles from './Pagination.module.css';
 
-const NUMBER_TO_SHOW_CLOSER_ITEMS = 2;
+
+const NUMBER_TO_SHOW_CLOSER_ITEMS = 3;
 
 const Pagination = (props) => {
   const totalPageCount = useMemo(() => {

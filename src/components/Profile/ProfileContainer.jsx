@@ -9,13 +9,14 @@ import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 
 const ProfileContainer = (props) => {
-  const { profile, status } = useSelector(state => state.profile);
+  const { profile, status } = useSelector((state) => state.profile);
+  const { userId: authorizedUserId } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   let { userId } = useParams();
 
   useEffect(() => {
     if(!userId) {
-      userId = 31966;
+      userId = authorizedUserId;
     }
     dispatch(profileThunk.getProfileUser(userId))
     dispatch(profileThunk.getStatus(userId))

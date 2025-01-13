@@ -20,11 +20,11 @@ let UsersContainer = (props) => {
   }
 
   const followUser = (userId) => {
-    dispatch(usersThunk.unfollowUser(userId));
+    dispatch(usersThunk.followUnfollowUser({ userId, followType: true }));
   }
 
   const unfollowUser = (userId) => {
-    dispatch(usersThunk.followUser(userId));
+    dispatch(usersThunk.followUnfollowUser({ userId, followType: false }));
   }
 
   const toggleFollowingProgress = (followingInProgress) => {
