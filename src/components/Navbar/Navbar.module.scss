@@ -1,0 +1,49 @@
+.nav {
+    grid-area: n;
+    background-color: #a29b9d;
+    padding: 20px;
+    font-size: 18px;
+
+    .item {
+        padding-bottom: 10px;
+
+        a {
+            color: white;
+            text-decoration: none;
+
+            &:active,
+            :focus {
+                color: #8a6284;
+            }
+
+            &:hover {
+                color: #8a6284;
+            }
+        }
+
+        &:last-child {
+            margin-top: 30px;
+        }
+
+        .friendsBlock {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .avatar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5px;
+
+            img {
+                width: 25px;
+                border-radius: 50%;
+            }
+
+
+        }
+    }
+}
+
+

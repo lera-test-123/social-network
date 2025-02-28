@@ -1,0 +1,33 @@
+.totalPagesCount {
+    margin-bottom: 20px;
+
+    .pagination {
+        margin-bottom: 15px;
+
+         button {
+            margin-right: 5px;
+            margin-left: 5px;
+            border-radius: 4px;
+            border: 0.3px solid silver;
+            padding: 4px 7px;
+        }
+
+        button:hover {
+            background-color: #a29b9d;
+        }
+
+        button.active {
+            background-color: #a29b9d;
+            color: white;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+

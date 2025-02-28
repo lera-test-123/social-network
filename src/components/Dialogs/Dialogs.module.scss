@@ -1,0 +1,55 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    color: #443c41;
+
+    .dialogsItems {
+        border-right: #443c41 1px solid;
+
+        .dialog {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+
+            img {
+                width: 25px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+
+            a {
+                text-decoration: none;
+                color: #443c41;
+
+                &:active,
+                &:focus {
+                    color: #8a6284;
+                }
+
+                &:hover {
+                    color: white;
+                }
+            }
+
+        }
+    }
+
+    .messages {
+        margin-left: 80px;
+        max-width: 500px;
+        padding: 10px;
+
+        .rightMessage {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 20px;
+            color: red;
+        }
+
+        .leftMessage {
+            display: flex;
+            justify-content: flex-start;
+            padding-right: 50px;
+        }
+    }
+}
