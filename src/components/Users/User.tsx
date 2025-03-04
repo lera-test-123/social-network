@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './Users.module.scss';
 import userPhoto from '../../assets/images/userPhoto.jpg';
-import {UserType} from "../../redux/users/type";
+import { UserType } from "../../redux/users/type";
 
 
 

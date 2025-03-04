@@ -4,6 +4,7 @@ import dialogsReducer  from "./dialogs/slice";
 import sidebarReducer from "./sidebar/slice";
 import usersReducer from "./users/slice";
 import authReducer from "./auth/slice";
+import chatReducer from "./chat/slice";
 
 
 let rootReducer = combineReducers({
@@ -12,6 +13,7 @@ let rootReducer = combineReducers({
   sidebar: sidebarReducer,
   users: usersReducer,
   auth: authReducer,
+  chat: chatReducer,
 })
 
 let store = configureStore({

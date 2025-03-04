@@ -11,6 +11,7 @@ const navLinks = [
   {link: "/music", text:"Music"},
   {link: "/settings", text:"Settings"},
   {link: "/users", text:"Users"},
+    {link: "/chat", text:"Chat"},
 ];
 
 

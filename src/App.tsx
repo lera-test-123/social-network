@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -13,6 +14,9 @@ import Preloader from "./components/common/Preloader/Preloader";
 import UsersPage from "./components/Users/UsersPage";
 import Profile from "./components/Profile/Profile";
 import Header from "./components/Header/Header";
+
+
+const ChatPage = React.lazy(() => import("./pages/Chat/Chat"));
 
 
 const App = (props: any) => {
@@ -34,6 +38,9 @@ const App = (props: any) => {
             <Route path='/users' element={<UsersPage/>}/>
             <Route path='/friends' element={<Friends/>}/>
             <Route path='/login' element={<Login/>}/>
+            <Route path='/chat' element={<React.Suspense fallback={<Preloader />}>
+                <ChatPage />
+            </React.Suspense>}/>
           </Routes>
         )}
       </div>

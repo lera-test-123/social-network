@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import authApi from "../../api/authApi";
 import { getCaptchaUrlSuccess, setAuthUserData, setIsFetching } from "./slice";
 import getCaptchaUrlApi from "../../api/securityApi";
-import {ResultCodeEnum, ResultCodeForCaptcha} from "../../api/types";
+import { ResultCodeEnum, ResultCodeForCaptcha } from "../../api/types";
 
 
 const getCurrentUser = createAsyncThunk(

@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import {AppBar, Box, Breadcrumbs, Button, Stack, Toolbar, Typography} from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
-import Link from '@mui/material/Link';
 import {useAppDispatch, useAppSelector} from "../../lib/hooks";
 import {useEffect} from "react";
 import authThunk from "../../redux/auth/thunks";
